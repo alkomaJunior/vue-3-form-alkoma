@@ -1,5 +1,5 @@
 <template>
-  <label>{{ label }}</label>
+  <label v-if="label">{{ label }}</label>
   <input
     :placeholder="label"
     class="field"
@@ -7,7 +7,7 @@
     v-bind="{
       ...$attrs,
       onInput: ($event) => {
-        $emit('update:modelValue', $event.target.value);
+        $emit('update:modelValue', $event.target.value)
       },
     }"
   />
@@ -15,16 +15,16 @@
 
 <script>
 export default {
-  name: "BaseInput",
+  name: 'BaseInput',
   props: {
     label: {
       type: String,
-      default: "",
+      default: '',
     },
     modelValue: {
       type: [String, Number],
-      default: "",
+      default: '',
     },
   },
-};
+}
 </script>

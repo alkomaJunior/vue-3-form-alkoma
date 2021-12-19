@@ -1,11 +1,11 @@
 <template>
-  <label>{{ label }}</label>
+  <label v-if="label">{{ label }}</label>
   <select
     :value="modelValue"
     v-bind="{
       ...$attrs,
       onInput: ($event) => {
-        $emit('update:modelValue', $event.target.value);
+        $emit('update:modelValue', $event.target.value)
       },
     }"
     class="field"
@@ -24,22 +24,22 @@
 
 <script>
 export default {
-  name: "BaseSelect",
+  name: 'BaseSelect',
   props: {
     label: {
       type: String,
-      default: "",
+      default: '',
     },
     modelValue: {
       type: [String, Number],
-      default: "",
+      default: '',
     },
     options: {
       type: Array,
       required: true,
     },
   },
-};
+}
 </script>
 
 <style scoped></style>
