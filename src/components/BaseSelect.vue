@@ -1,8 +1,6 @@
 <template>
   <label>{{ label }}</label>
-  <input
-    :placeholder="label"
-    class="field"
+  <select
     :value="modelValue"
     v-bind="{
       ...$attrs,
@@ -10,12 +8,23 @@
         $emit('update:modelValue', $event.target.value);
       },
     }"
-  />
+    class="field"
+  >
+    <option value="" disabled selected hidden>{{ label }}</option>
+    <option
+      v-for="option in options"
+      :key="option"
+      :selected="option === modelValue"
+      :value="option"
+    >
+      {{ option }}
+    </option>
+  </select>
 </template>
 
 <script>
 export default {
-  name: "BaseInput",
+  name: "BaseSelect",
   props: {
     label: {
       type: String,
@@ -25,6 +34,12 @@ export default {
       type: [String, Number],
       default: "",
     },
+    options: {
+      type: Array,
+      required: true,
+    },
   },
 };
 </script>
+
+<style scoped></style>
